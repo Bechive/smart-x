@@ -17,3 +17,5 @@ UDPSock = socket(AF_INET, SOCK_DGRAM)
 data = "INIT:"+ meId + ":" + str(count)
 UDPSock.sendto(data, addr)
 print meId + " initialized with " + str(count) + " trolleys"
+UDPSock.close()
+os._exit(0)
