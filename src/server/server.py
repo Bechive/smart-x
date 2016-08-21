@@ -12,12 +12,12 @@ UDPSock.bind(addr)
 client = MongoClient()
 db = client.trolleysystem
 
-print "Waiting to receive baycount..."
+print "Server started..."
 while True:
     (data, addr) = UDPSock.recvfrom(buf)
     if data == "exit":
         break
-    print "Received message: " + data
+    print "Received : " + data
     if data.split(':')[0] == "REFRESH":
         result = db.bays.update_one(
             {"id": data.split(':')[2]},
