@@ -15,17 +15,13 @@ db = client.trolleysystem
 print "Waiting to receive baycount..."
 while True:
     (data, addr) = UDPSock.recvfrom(buf)
-    print "Received message: " + data
-
-
-    result = db.bays.update_one(
-        {"id": data.split(':')[1]},
-        {"$set": {"stock": data.split(':')[0]}}
-    )
-
-    print result.matched_count
-
     if data == "exit":
         break
+    print "Received message: " + data
+    if data.split(':')[0] == "REFRESH":
+        result = db.bays.update_one(
+            {"id": data.split(':')[2]},
+            {"$set": {"stock": data.split(':')[1]}}
+        )
 UDPSock.close()
 os._exit(0)
