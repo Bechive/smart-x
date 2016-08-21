@@ -1,8 +1,15 @@
 import os
 from socket import *
 meId = raw_input("Enter my id: ")
-count = 0;
-#host = "127.0.0.1" # set to IP address of target computer
+
+#set id name clientside
+meName = open('client-name.txt', 'w')
+meName.write(meId)
+meName.close()
+
+
+count = 0 #number of inital trolleys
+
 host =  open('../serverip.txt','r').read().split('\n')[0]
 port = 13000
 addr = (host, port)
