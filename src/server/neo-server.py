@@ -28,18 +28,33 @@ while True:
             bayNo = data.split(":")[0]
             trolleyNo = data.split(":")[1]
             print "inputType="+inputType+", bayNo="+bayNo+", trolleyNo="+trolleyNo+"\n"
+
+
+
         if inputType == "INIT":
             bayNo = data
             print "inputType="+inputType+", bayNo="+bayNo+"\n"
+            result = db.bays.insert_one(
+                {
+                    "id": bayNo,
+                    "stock": 0
+                }
+            )
+            result.inserted_id
+
+
+
     except :
         print "invalid message"
+UDPSock.close()
+os._exit(0)
 
-    '''
+
+'''
     if data.split(':')[0] == "REFRESH":
         result = db.bays.update_one(
             {"id": data.split(':')[2]},
             {"$set": {"stock": data.split(':')[1]}}
-        )
-    '''
-UDPSock.close()
-os._exit(0)
+    )
+    result.inserted_id
+'''
