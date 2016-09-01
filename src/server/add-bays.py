@@ -18,7 +18,7 @@ i = 0
 print "Waiting to receive bays..."
 while True:
     (data, addr) = UDPSock.recvfrom(buf)
-    if data.split(':')[0] == "INIT":
+    if data.split(':')[0] == "INIT>":
         result = db.bays.insert_one(
             {
                 "id": data.split(':')[1],

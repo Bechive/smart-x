@@ -17,10 +17,13 @@ addr = (host, port)
 UDPSock = socket(AF_INET, SOCK_DGRAM)
 
 while True:
-    data = raw_input("enter bay count: ")
+
+    data = raw_input("enter input: ")
+    #bay = raw_input("enter bay: ")
+    #trolley = raw_input("enter trolley: ")
     if data == "exit":
         break
-    data = "REFRESH:" + data + ":" + meId
+    #data = "TRIO>" + bay + ":" + trolley + "<"
     UDPSock.sendto(data, addr)
 UDPSock.close()
 os._exit(0)
